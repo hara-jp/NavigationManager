@@ -1,0 +1,25 @@
+<!--
+# -*- Buildfile -*-
+# @file  run_NavigationManager.xml
+# @brief Execute RTComponent for "NavigationManager component" 
+# @date  $Date$
+#
+# $Id$
+ -->
+<project name="NavigationManager" default="exec">
+    <property environment="env" />
+    <property name="option" value="" />
+
+    <target name="exec" >
+        <java classname="NavigationManagerComp">
+            <classpath>
+                <pathelement location="bin"/>
+                <pathelement location="."/>
+                <fileset dir="${env.RTM_JAVA_ROOT}/jar">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+            <arg line="${option}" />
+        </java>
+    </target>
+</project> 
