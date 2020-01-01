@@ -12,9 +12,10 @@ import jp.go.aist.rtm.RTC.ModuleInitProc;
 import jp.go.aist.rtm.RTC.RTObject_impl;
 import jp.go.aist.rtm.RTC.util.Properties;
 
-/*!
- * @class NavigationManagerComp
- * @brief Standalone component Class
+/**
+ * NavigationManagerComp
+ * <p>
+ * Standalone component Class
  *
  */
 public class NavigationManagerComp implements ModuleInitProc {
@@ -26,8 +27,8 @@ public class NavigationManagerComp implements ModuleInitProc {
       // Create a component
       RTObject_impl comp = mgr.createComponent("NavigationManager");
       if( comp==null ) {
-    	  System.err.println("Component create failed.");
-    	  System.exit(0);
+          System.err.println("Component create failed.");
+          System.exit(0);
       }
       
       // Example

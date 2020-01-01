@@ -25,6 +25,7 @@ public class MapImageHolder {
 	
 	public MapImageHolder(OGMap map) {
 		this.map = map;
+		//System.out.println("<<< "+ map.config.origin.position.x +","+ map.config.origin.position.y+" >>>");
 	}
 	
 	public int getPixelWidth() {

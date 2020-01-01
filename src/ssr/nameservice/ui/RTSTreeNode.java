@@ -486,7 +486,7 @@ public class RTSTreeNode extends DefaultMutableTreeNode {
 						return unknownRTCImageIcon;
 					}
 				} catch (Exception e) {
-					// TODO 自動生成された catch ブロ�?��
+					// TODO 自動生成された catch block
 					e.printStackTrace();
 					component = null;
 					return unknownRTCImageIcon;

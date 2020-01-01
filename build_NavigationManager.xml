@@ -1,33 +1,69 @@
-<!--
+﻿<!--
 # -*- Buildfile -*-
 # @file  build_NavigationManager.xml
-# @brief RTComponent makefile for "MapperViewer component"
+# @brief RTComponent makefile for "NavigationManager component"
 # @date  $Date$
 #
 # $Id$
  -->
-<project name="NavigationManager" default="compile">
+<project name="NavigationManager" default="generatedoc">
 	<property name="source" value="src" />
 	<property name="dest" value="bin" />
+	<property name="doc" value="doc" />
 	<property environment="env" />
 
 	<target name="mkdir">
 		<mkdir dir="${dest}" />
+		<mkdir dir="src/temp" />
 	</target>
 
 	<target name="idlcompile"  depends="mkdir">
-		<exec executable="${java.home}/../jdk1.7.0_17/bin/idlj">
-			<arg line="-td 'src' -i 'idl' -fall 'idl/MobileRobot.idl'"/>
+		<exec executable="${java.home}/../bin/idlj">
+			<arg line="-td 'src' -i '${env.RTM_IDL_DIR}' -i 'C:\Users\ogata\Desktop\MappingRTCs\MapperViewer\idl' -i 'C:\Users\ogata\Desktop\MappingRTCs\MapperViewer\idl' -fall 'idl/MobileRobot.idl'"/>
 		</exec>
+		<exec executable="${java.home}/../bin/idlj">
+			<arg line="-td 'src' -i '${env.RTM_IDL_DIR}' -fall 'idl/MobileRobot.idl'"/>
+		</exec>
+		<native2ascii src="src/temp" dest="src"/>
+		<delete dir="src/temp"/>
 	</target>
 
 	<target name="compile" depends="idlcompile">
-		<javac srcdir="${source}" destdir="${dest}">
+		<javac includeantruntime="false" srcdir="${source}" destdir="${dest}">
 			<classpath>
+				<fileset dir="${env.RTM_JAVA_ROOT}/jar">
+					<include name="*.jar"/>
+				</fileset>
 				<fileset dir="jar">
 					<include name="*.jar"/>
 				</fileset>
 			</classpath>
 		</javac>
+	</target>
+	<target name="generatedoc" depends="compile">
+		<javadoc
+                        Locale="ja_JP"
+                        destdir="${doc}"
+                        docencoding="UTF-8"
+			author="true" doctitle="NavigationManager"
+			nodeprecated="false" nodeprecatedlist="false"
+                        noindex="false" nonavbar="false" notree="false"
+			package="yes" splitindex="true"
+                        use="true" version="true" charset="UTF-8"
+                        >
+			<classpath>
+				<fileset dir="${env.RTM_JAVA_ROOT}/jar">
+					<include name="*.jar"/>
+				</fileset>
+				<fileset dir="jar">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+			<sourcefiles>
+				<fileset dir="${source}">
+					<include name="**/*.java"/>
+				</fileset>
+                	</sourcefiles>
+                </javadoc>
 	</target>
 </project>

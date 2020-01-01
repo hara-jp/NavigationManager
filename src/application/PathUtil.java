@@ -15,6 +15,7 @@ import org.ho.yaml.Yaml;
 import RTC.Path2D;
 import RTC.Point2D;
 import RTC.Pose2D;
+import RTC.Velocity2D;
 import RTC.Waypoint2D;
 
 public class PathUtil {
@@ -37,7 +38,7 @@ public class PathUtil {
 						+ path.waypoints[i].timeLimit.sec + ", " +  path.waypoints[i].timeLimit.nsec
 						+ "]\n"
 						+ "  maxSpeed : ["
-						+ path.waypoints[i].maxSpeed.position.x + ", " + path.waypoints[i].maxSpeed.position.y + ", " + path.waypoints[i].maxSpeed.heading
+						+ path.waypoints[i].maxSpeed.vx + ", " + path.waypoints[i].maxSpeed.vy + ", " + path.waypoints[i].maxSpeed.va
 						+ "]\n"
 				);
 			}
@@ -83,7 +84,7 @@ public class PathUtil {
 			
 			path.waypoints[i] = new Waypoint2D(new Pose2D(new Point2D(x, y), phi), 
 					distanceTolerance.doubleValue(), headingTolerance.doubleValue(),
-					new RTC.Time(sec, nsec), new Pose2D(new Point2D(maxX, maxY), maxPhi));
+					new RTC.Time(sec, nsec), new Velocity2D(maxX, maxY, maxPhi));
 			
 		}
 		
