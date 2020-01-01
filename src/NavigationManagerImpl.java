@@ -650,10 +650,13 @@ public class NavigationManagerImpl extends DataFlowComponentBase {
 			retval = this.m_pathPlannerBase._ptr().planPath(param, pathHolder);
 			if (retval == RETURN_VALUE.RETVAL_OK) {
 				logger.info("SUCCESS: Planning Success");
+				app.writeMessage("SUCCESS: Planning Success");
 			} else if (retval == RETURN_VALUE.RETVAL_NOT_FOUND) {
 				logger.warning("ERROR: Path Not Found");
+				app.writeMessage("ERROR: Path Not Found");
 			} else if (retval == RETURN_VALUE.RETVAL_INVALID_PARAMETER) {
 				logger.warning("ERROR: Invalid Start or Goal coordinates");
+				app.writeMessage("ERROR: Invalid Start or Goal coordinates");
 			}
 		}
 

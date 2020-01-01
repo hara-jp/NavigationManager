@@ -162,6 +162,7 @@ public class Application implements Runnable {
 
 	public void planPath() {
 		logger.info("Start Planning....");
+		writeMessage("Start Planning....");
 		PathPlanParameter param = new PathPlanParameter();
 		param.targetPose = dataContainer.getGoal();// new RTC.Pose2D(new
 													// RTC.Point2D(getGoalX(),
@@ -174,6 +175,7 @@ public class Application implements Runnable {
 		RTC.Path2D path = rtc.planPath(param);
 		if (path != null) {
 			logger.info("Path is successfully acquired. Rendering....");
+			writeMessage("Path is successfully acquired. Rendering....");
 			dataContainer.setPath(path);
 		}
 	}
@@ -287,6 +289,17 @@ public class Application implements Runnable {
 			}
 		} else {
 			robotLogFile = null;
+		}
+	}
+
+	public void writeMessage(String msg) {
+		msg += "\n";
+		byte[] buf=msg.getBytes();
+		try{
+		  view.m_LogView.os.write(buf,0, buf.length);
+		  view.m_LogView.os.flush();
+		} catch(IOException e){
+			;
 		}
 	}
 
