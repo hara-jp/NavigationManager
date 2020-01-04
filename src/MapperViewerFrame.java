@@ -103,7 +103,9 @@ public class MapperViewerFrame extends JFrame {
 
 	private JMenu controlMenu;
 	
-	public JScrollPane mapScrollPane;
+	public JSLoggercrollPane mapScrollPane;
+	
+	public LoggerView m_LogView;
 	
 	static public String getTitleStr(Application app, String state) {
 		return "Navigation Manager(" + app.getVersion() + ") ("+state+")";
@@ -143,7 +145,8 @@ public class MapperViewerFrame extends JFrame {
 		vSplitPane.setDividerLocation(height / 3 * 2);
 		mapScrollPane = new JScrollPane(mapPanel);
 		vSplitPane.add(mapScrollPane);
-		vSplitPane.add(new LoggerView("MapperViewer"));
+		m_LogView = new LoggerView("MapperViewer");
+		vSplitPane.add(m_LogView);
 
 		add(hSplitPane, BorderLayout.CENTER);
 
