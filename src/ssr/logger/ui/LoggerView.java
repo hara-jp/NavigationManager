@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
 @SuppressWarnings("serial")
 public class LoggerView extends JPanel {
 	JScrollPane scrollPane;
-	OutputStream os;
+	public OutputStream os;
 	JTextArea jTextArea;
 	Logger logger;
 	
